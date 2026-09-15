@@ -107,7 +107,7 @@ http://내주소:8000/health
 ```bash
 npx create-expo-app app --template blank
 cd app
-npx expo install expo-camera
+npx expo install expo-camera expo-file-system
 ```
 
 `npm install`이 3~5분 걸립니다.

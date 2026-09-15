@@ -1,6 +1,8 @@
 // 아래 SERVER 주소를 expo 서버가 알려준 주소로 바꿔야 한다.
 
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import { fetch } from 'expo/fetch';
+import { File } from 'expo-file-system';
 import { useRef, useState } from 'react';
 import {
   ActivityIndicator,
@@ -12,7 +14,7 @@ import {
   View,
 } from 'react-native';
 
-const SERVER = 'http://192.168.0.10:8000';
+const SERVER = 'http://10.138.156.195:8000';
 
 export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -60,7 +62,8 @@ export default function App() {
       const form = new FormData();
 
       // RN에서는 파일을 이 모양의 객체로 넣는다
-      form.append('file', { uri: shot.uri, name: 'photo.jpg', type: 'image/jpeg' });
+      const photoFile = new File(shot.uri);
+      form.append('file', photoFile);
 
       // Content-Type을 직접 지정하면 boundary가 빠져서 서버가 파일을 못 읽는다
       const res = await fetch(`${SERVER}/ocr`, { method: 'POST', body: form });

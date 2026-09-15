@@ -108,7 +108,7 @@ curl http://localhost:8000/health
 ```bash
 npx create-expo-app app --template blank
 cd app
-npx expo install expo-camera
+npx expo install expo-camera expo-file-system
 ```
 
 만들어진 `App.js`를 이 폴더의 `App.js`로 덮어씁니다.
